@@ -3,6 +3,7 @@
 
 import os
 import re
+import locale
 from typing import TYPE_CHECKING
 
 from jrnl.messages import Message
@@ -80,6 +81,7 @@ class MarkdownExporter(TextExporter):
     @classmethod
     def export_journal(cls, journal: "Journal") -> str:
         """Returns a Markdown representation of an entire journal."""
+        locale.setlocale(locale.LC_TIME, '')
         out = []
         year, month = -1, -1
         for e in journal.entries:
